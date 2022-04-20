@@ -7,7 +7,7 @@ metadata:
   annotations:
     ingressclass.kubernetes.io/is-default-class: "true"
 spec:
-  controller: nginx.org/ingress-controller
+  controller: k8s.io/ingress-nginx
   rules:
     - host: ticketing.dev
       http:

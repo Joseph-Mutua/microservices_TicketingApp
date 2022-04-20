@@ -7,8 +7,8 @@ deploy:
     flags:
       disableValidation: true
 build:
-  local:
-    push: false
+  # local:
+  #   push: false
   googleCloudBuild:
     projectId: notional-buffer-347815
   artifacts: 

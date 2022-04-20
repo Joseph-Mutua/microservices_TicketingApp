@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: mutuadocker/auth
+          image: us.gcr.io/notional-buffer-347815/auth
 
 ---
 apiVersion: v1
