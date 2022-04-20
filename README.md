@@ -7,11 +7,13 @@
 -   While locked, no other user can purchase the ticket. After 15 minutes, the ticket should unlock
 -   Ticket prices can be edited if they are not locked.
 
-## Services and Architecture
+## Services
 1. **auth** Everything related to user signup/signin/signout
 2. **tickets** Ticket creation/editing. Knows whether a ticket can be updated.
 3. **orders** Order creation/editing.
 4. **expiration** Watches for orders to be created, cancels them after 15 mins
 5. **payments** Handles credit card payments. Cancels orders if payments fail, completes orders if payment succeeds.
+
+## Architecture
 
 ![Services and Architecture](images/architecture.png)
