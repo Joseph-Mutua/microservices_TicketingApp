@@ -4,11 +4,15 @@ deploy:
   kubectl:
     manifests:
       - ./infra/k8s/*
+    flags:
+      disableValidation: true
 build:
   local:
     push: false
+  googleCloudBuild:
+    projectId: notional-buffer-347815
   artifacts: 
-    - image: mutuadocker/auth
+    - image: us.gcr.io/notional-buffer-347815/auth
       context: auth
       docker:
         dockerfile: Dockerfile
