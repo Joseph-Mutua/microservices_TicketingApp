@@ -17,3 +17,14 @@
 ## Architecture
 
 ![Services and Architecture](images/architecture.png)
+
+## Authentication Strategy
+### Requirements for the Auth System
+1. Must be able to tell details about a user
+2. Must be able to ahnd;e authorization info
+3. Must have a built-in, tamper-resistant way to expire or invalidate itself
+4. Must be easily understood between different languages
+5. Must not require some kind of backing data store on the server
+
+### Auth Flow Example
+![Services and Architecture](images/authentication.drawio.png)

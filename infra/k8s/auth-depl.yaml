@@ -15,6 +15,11 @@ spec:
       containers:
         - name: auth
           image: us.gcr.io/notional-buffer-347815/auth
+          env:
+            - name: JWT_KEY
+              secretKeyRef:
+                name: jwt-secret
+                key: JWT_KEY
 
 ---
 apiVersion: v1
