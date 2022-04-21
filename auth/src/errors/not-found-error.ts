@@ -5,6 +5,7 @@ export class NotFoundError extends CustomError {
 
   constructor() {
     super("Route not found");
+
     Object.setPrototypeOf(this, NotFoundError.prototype);
   }
 
@@ -12,5 +13,3 @@ export class NotFoundError extends CustomError {
     return [{ message: "Not Found" }];
   }
 }
-
-throw new NotFoundError();
