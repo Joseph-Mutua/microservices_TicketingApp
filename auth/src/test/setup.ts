@@ -8,6 +8,7 @@ declare global {
   namespace NodeJS {
     interface Global {
       signin(): Promise<string[]>;
+      JWT_KEY: string
     }
   }
 }
