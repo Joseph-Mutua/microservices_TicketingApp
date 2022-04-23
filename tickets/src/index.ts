@@ -3,7 +3,7 @@ import { app } from "./app";
 
 
 const JWT_KEY = "asdfasdf"
-const MONGO_URI="mongodb://auth-mongo-srv:27017/auth";
+const MONGO_URI="mongodb://tickets-mongo-srv:27017/tickets";
 
 const start = async () => {
   if (!JWT_KEY) {

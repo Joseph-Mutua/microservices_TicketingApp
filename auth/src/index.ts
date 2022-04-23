@@ -2,15 +2,20 @@ import mongoose from "mongoose";
 import { app } from "./app";
 require("dotenv").config();
 
-const JWT_KEY = "asdfasdf"
+const JWT_KEY = "asdfasdf";
+const MONGO_URI = "mongodb://auth-mongo-srv:27017/auth";
 
 const start = async () => {
   if (!JWT_KEY) {
     throw new Error("JWT_KEY must be defined!");
   }
 
+  if (!MONGO_URI) {
+    throw new Error("MONGO_URI must be defined!");
+  }
+
   try {
-    await mongoose.connect("mongodb://auth-mongo-srv:27017/auth");
+    await mongoose.connect(MONGO_URI);
     console.log("Connected to MongoDb");
   } catch (err) {
     console.error(err);
