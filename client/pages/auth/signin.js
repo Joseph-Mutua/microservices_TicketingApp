@@ -1,58 +1,48 @@
-import express, { Request, Response } from 'express';
-import { body } from 'express-validator';
-import jwt from 'jsonwebtoken';
+import { useState, useEffect } from "react";
+import Router from "next/router";
+import useRequest from "../../hooks/use-request";
 
-import { Password } from '../services/password';
-import { User } from '../models/user';
-import { validateRequest } from '../middlewares/validate-request';
-import { BadRequestError } from '../errors/bad-request-error';
+export default () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { doRequest, errors } = useRequest({
+    url: "/api/users/signin",
+    method: "post",
+    body: {
+      email,
+      password,
+    },
+    onSuccess: () => Router.push("/"),
+  });
 
-const router = express.Router();
+  const onSubmit = async (event) => {
+    event.preventDefault();
 
-router.post(
-  '/api/users/signin',
-  [
-    body('email')
-      .isEmail()
-      .withMessage('Email must be valid'),
-    body('password')
-      .trim()
-      .notEmpty()
-      .withMessage('You must supply a password')
-  ],
-  validateRequest,
-  async (req: Request, res: Response) => {
-    const { email, password } = req.body;
+    await doRequest();
+  };
 
-    const existingUser = await User.findOne({ email });
-    if (!existingUser) {
-      throw new BadRequestError('Invalid credentials');
-    }
-
-    const passwordsMatch = await Password.compare(
-      existingUser.password,
-      password
-    );
-    if (!passwordsMatch) {
-      throw new BadRequestError('Invalid Credentials');
-    }
-
-    // Generate JWT
-    const userJwt = jwt.sign(
-      {
-        id: existingUser.id,
-        email: existingUser.email
-      },
-      process.env.JWT_KEY!
-    );
-
-    // Store it on session object
-    req.session = {
-      jwt: userJwt
-    };
-
-    res.status(200).send(existingUser);
-  }
-);
-
-export { router as signinRouter };
+  return (
+    <form onSubmit={onSubmit}>
+      <h1>Sign In</h1>
+      <div className="form-group">
+        <label>Email Address</label>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="form-control"
+        />
+      </div>
+      <div className="form-group">
+        <label>Password</label>
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          className="form-control"
+        />
+      </div>
+      {errors}
+      <button className="btn btn-primary">Sign In</button>
+    </form>
+  );
+};
