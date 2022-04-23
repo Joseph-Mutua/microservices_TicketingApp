@@ -18,6 +18,12 @@
 
 ![Services and Architecture](images/architecture.png)
 
+I published the common module on npm and it can be viewed on this [link](https://www.npmjs.com/settings/mutua-ticketing-service/packages)  
+It includes all shared logic between the various services such as:
+-   A custom Error System
+-   Authentication Middleware
+-   Request Validation Module 
+
 ## Authentication Strategy
 ### Requirements for the Auth System
 1. Must be able to tell details about a user
@@ -28,3 +34,4 @@
 
 ### Auth Flow Example
 ![Services and Architecture](images/authentication.drawio.png)
+
