@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { NotFoundError } from "@cygnetops/common";
+import { NotFoundError } from "@mutua-ticketing-service/common";
 import { Ticket } from "../models/ticket";
 
 const router = express.Router();

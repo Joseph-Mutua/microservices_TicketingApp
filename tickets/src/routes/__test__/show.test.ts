@@ -14,6 +14,7 @@ it("returns the ticket if the ticket is found", async () => {
 
   const response = await request(app)
     .post("/api/tickets")
+    //@ts-ignore
     .set("Cookie", global.signin())
     .send({
       title,
