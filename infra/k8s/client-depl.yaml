@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata: 
+metadata:
   name: client-depl
 spec:
   replicas: 1
@@ -15,14 +15,12 @@ spec:
       containers:
         - name: client
           image: us.gcr.io/notional-buffer-347815/client
-
-
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: client-srv
-spec: 
+spec:
   selector:
     app: client
   ports:
@@ -30,3 +28,5 @@ spec:
       protocol: TCP
       port: 3000
       targetPort: 3000
+
+
