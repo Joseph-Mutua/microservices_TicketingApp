@@ -18,7 +18,7 @@ beforeAll(async () => {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
   mongo = new MongoMemoryServer();
-   await mongo.start();
+  await mongo.start()
   const mongoUri = await mongo.getUri();
 
   await mongoose.connect(mongoUri);
@@ -41,7 +41,7 @@ afterAll(async () => {
 global.signin = () => {
   // Build a JWT payload.  { id, email }
   const payload = {
-    id: "1lk24j124l",
+    id: new mongoose.Types.ObjectId().toHexString(),
     email: "test@test.com",
   };
 
