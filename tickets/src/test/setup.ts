@@ -18,12 +18,10 @@ beforeAll(async () => {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
   mongo = new MongoMemoryServer();
+   await mongo.start();
   const mongoUri = await mongo.getUri();
 
-  await mongoose.connect(mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  await mongoose.connect(mongoUri);
 });
 
 beforeEach(async () => {
@@ -39,6 +37,7 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
+//@ts-ignore
 global.signin = () => {
   // Build a JWT payload.  { id, email }
   const payload = {
