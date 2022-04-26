@@ -7,11 +7,13 @@ const stan = nats.connect("ticketing", randomBytes(4).toString("hex"), {
   url: "http://localhost:4222",
 });
 
+//@ts-ignore
 stan.on("connect", () => {
   console.log("Listener connected to NATS");
-
+  //@ts-ignore
   stan.on("close", () => {
     console.log("NATS connection closed!");
+    //@ts-ignore
     process.exit();
   });
 
@@ -26,7 +28,7 @@ stan.on("connect", () => {
     "queue-group-name",
     options
   );
-
+  //@ts-ignore
   subscription.on("message", (msg: Message) => {
     const data = msg.getData();
 
@@ -37,6 +39,7 @@ stan.on("connect", () => {
     msg.ack();
   });
 });
-
+//@ts-ignore
 process.on("SIGINT", () => stan.close());
+//@ts-ignore
 process.on("SIGTERM", () => stan.close());
