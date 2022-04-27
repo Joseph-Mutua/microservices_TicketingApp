@@ -40,6 +40,7 @@ It includes all shared logic between the various services such as:
 You need to have **Minikube**, **Kubectl**, **Docker**, **Skaffold** installed
 
 ## Running in Development Mode
+Create your kubectl `jwt-secret`, `stripe-secret` and update the ingress `baseURL` first
 
 **kubectl**
 ```
@@ -53,13 +54,14 @@ $ kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<STRIPE_
 ```
 
 **Ingress**
+
 Update the baseURL after skaffold starts
 
 ```
 $ kubectl get ingress
 ```
 
-It should resemble the following url
+It should resemble the following url:
 
 ```
 192-168-49-2.kubernetes.default.svc.cluster.local
