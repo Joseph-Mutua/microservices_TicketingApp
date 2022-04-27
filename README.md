@@ -35,3 +35,40 @@ It includes all shared logic between the various services such as:
 ### Auth Flow Example
 ![Services and Architecture](images/authentication.drawio.png)
 
+## Setup
+
+You need to have **Minikube**, **Kubectl**, **Docker**, **Skaffold** installed
+
+## Running in Development Mode
+
+**kubectl**
+```
+$ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=MY_JWT_SECRET
+```
+
+**Stripe**
+```
+// <STRIPE_SECRET_KEY> from stripe.com
+$ kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<STRIPE_SECRET_KEY>
+```
+
+**Ingress**
+Update the baseURL after skaffold starts
+
+```
+$ kubectl get ingress
+```
+
+It should resemble the following url
+
+```
+192-168-49-2.kubernetes.default.svc.cluster.local
+```
+
+Update the docker image names in the scripts from skaffold and k8s folders and run.
+
+```
+$ skaffold dev
+$ kubectl get pods
+
+```
